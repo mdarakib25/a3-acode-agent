@@ -1,0 +1,629 @@
+/* ---------- Basic layout ---------- */
+
+.a3-panel-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Accent color is pulled from Acode's own theme variables, so it fits
+     the user's editor theme (dark/light/custom) — a hardcoded purple was
+     used before, which might not have looked good in every theme.
+     Falls back to purple if --active-color/--button-background-color
+     aren't available. */
+  --a3-accent: var(--active-color, var(--button-background-color, #6a3de8));
+}
+
+.a3-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+/* ---------- Header ---------- */
+
+.a3-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  flex-shrink: 0;
+  position: relative;
+}
+
+.a3-panel-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--a3-accent) 0%, transparent 65%);
+}
+
+.a3-panel-title {
+  font-weight: 700;
+  flex: 1;
+  letter-spacing: 0.5px;
+}
+
+.a3-header-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 6px;
+  color: inherit;
+}
+
+.a3-header-btn:active {
+  background: rgba(255,255,255,0.08);
+}
+
+.a3-new-chat-btn {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* ---------- Chat body ---------- */
+
+.a3-panel-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 10px;
+  max-height: 100%;
+}
+
+.a3-empty-state {
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.a3-provider-status {
+  line-height: 1.6;
+}
+
+/* ---------- Welcome screen ---------- */
+
+.a3-welcome {
+  text-align: center;
+  padding: 24px 8px;
+}
+
+.a3-welcome-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.a3-welcome-sub {
+  opacity: 0.75;
+  font-size: 0.85rem;
+  margin: 4px 0;
+}
+
+.a3-ready-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.a3-ready-prompt-btn {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: rgba(255,255,255,0.03);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.a3-ready-prompt-btn:active {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ---------- Message bubbles (user bubble color changed) ---------- */
+
+.a3-msg {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.a3-msg-user {
+  justify-content: flex-end;
+}
+
+.a3-msg-assistant {
+  justify-content: flex-start;
+}
+
+.a3-msg-bubble {
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: rgba(255,255,255,0.06);
+  color: inherit;
+}
+
+.a3-msg-user .a3-msg-bubble {
+  background: var(--a3-accent);
+  color: #fff;
+}
+
+.a3-msg-loading {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* ---------- Task checklist ---------- */
+
+.a3-task-card {
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.03);
+}
+
+.a3-task-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.a3-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Plan card ---------- */
+
+.a3-plan-steps {
+  padding-left: 18px;
+  margin: 6px 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ---------- Footer ---------- */
+
+.a3-panel-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 8px;
+  border-top: 1px solid var(--border-color, rgba(255,255,255,0.1));
+}
+
+.a3-attach-btn {
+  border: none;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.a3-input {
+  flex: 1;
+  resize: none;
+  min-height: 38px;
+  max-height: 100px;
+  border-radius: 6px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: transparent;
+  color: inherit;
+}
+
+.a3-send-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 0 14px;
+  height: 38px;
+  cursor: pointer;
+  background: var(--a3-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.a3-stop-btn {
+  background: #e05555 !important;
+}
+
+/* ---------- Attachment chips ---------- */
+
+.a3-attach-row {
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 8px 0 8px;
+}
+
+.a3-attach-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+.a3-attach-chip-remove {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0 2px;
+}
+
+/* ---------- File picker overlay ---------- */
+
+.a3-file-picker-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: flex-end;
+  z-index: 50;
+}
+
+.a3-file-picker {
+  /* This used to use var(--body-bg-color, #1c1c28) but with "inherit" for
+     text color, background and text ended up nearly the same in a light
+     Acode theme, making it unreadable. Now this popup forces a fixed,
+     always-contrast-safe dark background + light text (instead of trying
+     to match the theme), so it's readable in any theme. */
+  background: #1c1c28;
+  color: #e9e9f2;
+  width: 100%;
+  max-height: 60%;
+  border-radius: 12px 12px 0 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.a3-file-picker-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e9e9f2;
+}
+
+.a3-file-picker-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.a3-file-picker-item {
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.82rem;
+  cursor: pointer;
+  word-break: break-all;
+  color: #e9e9f2;
+}
+
+.a3-file-picker-item:active {
+  background: rgba(255,255,255,0.1);
+}
+
+.a3-file-picker-close {
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.12);
+  color: #e9e9f2;
+  cursor: pointer;
+}
+
+/* ---------- History view ---------- */
+
+.a3-history-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));
+}
+
+.a3-history-row-title {
+  flex: 1;
+  font-size: 0.85rem;
+  word-break: break-word;
+}
+
+.a3-history-open-btn,
+.a3-history-delete-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.a3-history-open-btn {
+  background: var(--a3-accent);
+  color: #fff;
+}
+
+.a3-history-delete-btn {
+  background: rgba(255, 80, 80, 0.15);
+  color: #e05555;
+}
+
+/* ---------- Settings (UI/UX polish) ---------- */
+
+.a3-settings-form {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.a3-settings-form label {
+  font-size: 0.78rem;
+  opacity: 0.65;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.a3-select,
+.a3-input-field,
+.a3-textarea-field {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: rgba(255,255,255,0.02);
+  color: inherit;
+  box-sizing: border-box;
+  font-size: 0.88rem;
+}
+
+.a3-select:focus,
+.a3-input-field:focus,
+.a3-textarea-field:focus {
+  border-color: var(--a3-accent);
+  outline: none;
+}
+
+.a3-textarea-field {
+  font-family: monospace;
+  resize: vertical;
+}
+
+.a3-provider-block {
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  border-radius: 10px;
+  margin-top: 14px;
+  padding: 10px 12px 14px 12px;
+  background: rgba(255,255,255,0.015);
+}
+
+.a3-custom-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.a3-add-provider-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px dashed var(--border-color, rgba(255,255,255,0.3));
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.a3-delete-provider-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 80, 80, 0.15);
+  color: #e05555;
+  cursor: pointer;
+}
+
+/* ---------- Diff/Command/Plan cards (common) ---------- */
+
+.a3-diff-card {
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 0;
+  background: rgba(255,255,255,0.03);
+}
+
+.a3-diff-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  word-break: break-all;
+}
+
+.a3-diff-block {
+  font-family: monospace;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+.a3-diff-add {
+  background: rgba(80, 200, 120, 0.12);
+  border-left: 3px solid #3bb273;
+}
+
+/* line-by-line diff */
+.a3-diff-lines {
+  background: rgba(0,0,0,0.15);
+  padding: 4px 0;
+}
+
+.a3-diffline {
+  padding: 1px 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.a3-diffline-add {
+  background: rgba(80, 200, 120, 0.18);
+  color: #7bdba0;
+}
+
+.a3-diffline-remove {
+  background: rgba(255, 80, 80, 0.18);
+  color: #ff9b9b;
+}
+
+.a3-diffline-collapsed {
+  opacity: 0.5;
+  font-style: italic;
+  text-align: center;
+  padding: 4px;
+}
+
+.a3-diff-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.a3-diff-actions button {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.a3-diff-reject {
+  background: rgba(255,255,255,0.08);
+  color: inherit;
+}
+
+.a3-diff-accept {
+  background: #3bb273;
+  color: #fff;
+}
+
+.a3-command-card {
+  border-color: rgba(255, 180, 60, 0.4);
+  background: rgba(255, 180, 60, 0.06);
+}
+
+.a3-command-block {
+  background: rgba(0,0,0,0.25);
+  border-left: 3px solid #ffb43c;
+  color: #ffd479;
+}
+
+.a3-plan-card {
+  border-color: rgba(106, 61, 232, 0.4);
+  background: rgba(106, 61, 232, 0.06);
+}
+
+/* ---------- Markdown rendering ---------- */
+
+.a3-inline-code {
+  font-family: monospace;
+  background: rgba(255,255,255,0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.a3-code-block-wrap {
+  margin: 6px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.12));
+}
+
+.a3-code-lang {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.05);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.a3-code-block {
+  margin: 0;
+  padding: 10px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 0.8rem;
+  background: rgba(0,0,0,0.25);
+  white-space: pre;
+}
+
+.a3-md-list {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+/* ---------- History search ---------- */
+
+.a3-history-search-wrap {
+  padding: 8px 10px 0 10px;
+}
+
+.a3-history-search-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, rgba(255,255,255,0.15));
+  background: rgba(255,255,255,0.02);
+  color: inherit;
+  box-sizing: border-box;
+  font-size: 0.85rem;
+}
+
+/* ---------- Model Switcher / Server Check ---------- */
+
+.a3-file-picker-item-active {
+  color: var(--a3-accent);
+  font-weight: 600;
+}
+
+.a3-server-check-input {
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.a3-server-check-result {
+  font-family: monospace;
+  font-size: 0.82rem;
+  padding: 8px;
+  min-height: 20px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

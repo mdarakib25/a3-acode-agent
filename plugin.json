@@ -1,0 +1,20 @@
+{
+  "id": "com.a3.antigravity",
+  "name": "Antigravity Agent (A3)",
+  "main": "main.js",
+  "version": "1.0.0",
+  "readme": "readme.md",
+  "icon": "icon.png",
+  "files": ["style.css", "src/storage.js", "src/settings.js", "src/apiEngine.js", "src/agentTools.js", "src/agentLoop.js", "src/sessionStore.js", "src/diffUtil.js", "src/markdownUtil.js"],
+  "minVersionCode": 292,
+  "price": 0,
+  "license": "MIT",
+  "keywords": ["ai", "agent", "assistant", "autocomplete", "gemini", "claude", "openai", "ollama"],
+  "changelogs": "changelogs.md",
+  "author": {
+    "name": "Md Abdur Rakib",
+    "email": "Mdarakib25@gmail.com",
+    "url": "https://oursocial.top/u/mdarakib",
+    "github": "mdarakib25"
+  }
+}
